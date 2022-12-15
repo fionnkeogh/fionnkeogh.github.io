@@ -1,27 +1,27 @@
 {
   "files": {
-    "main.js": "/static/js/main.9ef1c095.chunk.js",
-    "main.js.map": "/static/js/main.9ef1c095.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.0708ae62.js",
-    "runtime-main.js.map": "/static/js/runtime-main.0708ae62.js.map",
-    "static/js/2.85cece72.chunk.js": "/static/js/2.85cece72.chunk.js",
-    "static/js/2.85cece72.chunk.js.map": "/static/js/2.85cece72.chunk.js.map",
-    "index.html": "/index.html",
-    "static/js/2.85cece72.chunk.js.LICENSE.txt": "/static/js/2.85cece72.chunk.js.LICENSE.txt",
-    "static/js/graph.worker.7da6dd68.js": "/static/js/graph.worker.7da6dd68.js",
-    "static/js/graph.worker.7da6dd68.js.map": "/static/js/graph.worker.7da6dd68.js.map",
-    "static/js/lattice.worker.d5e86fa0.js": "/static/js/lattice.worker.d5e86fa0.js",
-    "static/js/lattice.worker.d5e86fa0.js.map": "/static/js/lattice.worker.d5e86fa0.js.map",
-    "static/js/network.worker.e4b37d35.js": "/static/js/network.worker.e4b37d35.js",
-    "static/js/network.worker.e4b37d35.js.map": "/static/js/network.worker.e4b37d35.js.map",
-    "static/js/organization.worker.cdd37f99.js": "/static/js/organization.worker.cdd37f99.js",
-    "static/js/organization.worker.cdd37f99.js.map": "/static/js/organization.worker.cdd37f99.js.map",
-    "static/js/orgml.worker.947b3209.js": "/static/js/orgml.worker.947b3209.js",
-    "static/js/orgml.worker.947b3209.js.map": "/static/js/orgml.worker.947b3209.js.map"
+    "main.js": "/weborg/tool/static/js/main.8232748e.chunk.js",
+    "main.js.map": "/weborg/tool/static/js/main.8232748e.chunk.js.map",
+    "runtime-main.js": "/weborg/tool/static/js/runtime-main.4dafd56d.js",
+    "runtime-main.js.map": "/weborg/tool/static/js/runtime-main.4dafd56d.js.map",
+    "static/js/2.85cece72.chunk.js": "/weborg/tool/static/js/2.85cece72.chunk.js",
+    "static/js/2.85cece72.chunk.js.map": "/weborg/tool/static/js/2.85cece72.chunk.js.map",
+    "index.html": "/weborg/tool/index.html",
+    "static/js/2.85cece72.chunk.js.LICENSE.txt": "/weborg/tool/static/js/2.85cece72.chunk.js.LICENSE.txt",
+    "static/js/graph.worker.15f60e55.js": "/weborg/tool/static/js/graph.worker.15f60e55.js",
+    "static/js/graph.worker.15f60e55.js.map": "/weborg/tool/static/js/graph.worker.15f60e55.js.map",
+    "static/js/lattice.worker.e80a59d2.js": "/weborg/tool/static/js/lattice.worker.e80a59d2.js",
+    "static/js/lattice.worker.e80a59d2.js.map": "/weborg/tool/static/js/lattice.worker.e80a59d2.js.map",
+    "static/js/network.worker.8087369a.js": "/weborg/tool/static/js/network.worker.8087369a.js",
+    "static/js/network.worker.8087369a.js.map": "/weborg/tool/static/js/network.worker.8087369a.js.map",
+    "static/js/organization.worker.87d488a9.js": "/weborg/tool/static/js/organization.worker.87d488a9.js",
+    "static/js/organization.worker.87d488a9.js.map": "/weborg/tool/static/js/organization.worker.87d488a9.js.map",
+    "static/js/orgml.worker.421488cd.js": "/weborg/tool/static/js/orgml.worker.421488cd.js",
+    "static/js/orgml.worker.421488cd.js.map": "/weborg/tool/static/js/orgml.worker.421488cd.js.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.0708ae62.js",
+    "static/js/runtime-main.4dafd56d.js",
     "static/js/2.85cece72.chunk.js",
-    "static/js/main.9ef1c095.chunk.js"
+    "static/js/main.8232748e.chunk.js"
   ]
 }
