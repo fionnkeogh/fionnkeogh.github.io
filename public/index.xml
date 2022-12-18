@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Fionn Daire Keoghs Blog</title>
+    <link>http://fionnkeogh.github.io/</link>
+    <description>Recent content on Fionn Daire Keoghs Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 16 Oct 2021 00:00:00 +0000</lastBuildDate><atom:link href="http://fionnkeogh.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Development of a Webtool for the Calculation and Analysation of Chemical Organizations</title>
+      <link>http://fionnkeogh.github.io/posts/bachelors-thesis/</link>
+      <pubDate>Sat, 16 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>http://fionnkeogh.github.io/posts/bachelors-thesis/</guid>
+      <description>The thesis written to obtain the title of Bachelor of Science. It presents a web tool to compute chemical organizations.</description>
+    </item>
+    
+  </channel>
+</rss>
