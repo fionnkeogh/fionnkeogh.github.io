@@ -1,0 +1,78 @@
+body {
+    margin: 0px;
+}
+
+#title-page {
+    width: 100vw;
+    height: 100vh;
+    background-image: url("../images/img0.png");
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#title {
+    top: 4.0vh;
+    right: 3vw;
+    font-family: Fira Sans, Arial, Fira Mono, sans-serif;
+    font-size: 56px;
+    color: #0056a2;
+}
+#subtitle {
+    top: 4.0vh;
+    right: 3vw;
+    font-family: Fira Sans, Arial, Fira Mono, sans-serif;
+    font-size: 42px;
+    color: #0056a2;
+}
+
+#Source {
+    top: 4.0vh;
+    right: 3vw;
+    font-family: Fira Sans, Arial, Fira Mono, sans-serif;
+    font-size: 25px;
+    color: #0056a2;
+}
+
+#page-container {
+    width: 100vw;
+    height: 100vh;
+    background-image: url("../images/img1.png");
+    overflow: hidden;
+}
+
+#content-page {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    margin-top: 18.55vh;
+    width: 100vw;
+    height: 80vh;
+    display: flex;
+}
+
+#page-title {
+    position: absolute;
+    top: 4.0vh;
+    right: 3vw;
+    font-family: Fira Sans, Arial, Fira Mono, sans-serif;
+    font-size: 42px;
+    color: #0056a2;
+}
+
+#left-side {
+    margin-left: 30px;
+    width: 32vw;
+    height: 80vh;
+    margin-top: 18vh;
+    overflow: hidden;
+}
+
+#right-side {
+    width: 65vw;
+    height: 80vh;
+    margin-top: 18.55vh;
+    overflow: hidden;
+}

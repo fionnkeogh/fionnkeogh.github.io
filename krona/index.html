@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <script src="jquery.js"></script> 
+        <script>
+            const pages = [
+                "Main.html",
+                "A549_48H_Up.html",
+                "A549_72H_Up.html",
+                "A549_96H_Up.html",
+                "A549_48H_Down.html",
+                "A549_72H_Down.html",
+                "A549_96H_Down.html",
+                "Hep2_48H_Up.html",
+                "Hep2_72H_Up.html",
+                "Hep2_96H_Up.html",
+                "Hep2_48H_Down.html",
+                "Hep2_72H_Down.html",
+                "Hep2_96H_Down.html",
+            ];
+            function loadPage(index) {
+                $(function(){
+                    $("#includedContent").load(pages[index]); 
+                });
+                return index;
+            }
+            let index = loadPage(0);
+        </script>
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+    </head> 
+
+    <body> 
+        <div id="includedContent"></div>
+    </body> 
+    <script>
+        const body = document.querySelector("body");
+        body.addEventListener("keyup", changeSlide);
+
+        function changeSlide(e) {
+            if(e.code == "ArrowLeft") {
+                if(index != 0) {
+                    index = loadPage(index-1)
+                }
+            }
+            if(e.code == "ArrowRight") {
+                console.log((index < pages.length-1))
+                if(index < pages.length-1) {
+                    index = loadPage(index+1)
+                }
+            }
+        }
+    </script>
+</html>
