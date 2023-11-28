@@ -15,7 +15,7 @@ class Macrophage extends CanvasObject{
         this.size = 2
         this.img = new Image();
         this.img.src = "macrophage.svg";
-        console.log(this);
+        //console.log(this);
     }
 
     draw(context) {

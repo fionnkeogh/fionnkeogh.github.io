@@ -14,7 +14,7 @@ class Candida extends CanvasObject{
         this.rectHeight = rectHeight;
         this.img = new Image();
         this.img.src = "candida.svg";
-        console.log(this);
+        //console.log(this);
     }
 
     draw(context) {
@@ -24,7 +24,7 @@ class Candida extends CanvasObject{
         const pos_y = this.y*this.rectHeight;
         const rW = this.rectWidth;
         const rH = this.rectHeight;
-        console.log([pos_x, pos_y, rW, rH]);
+        //console.log([pos_x, pos_y, rW, rH]);
 
         context.fillStyle = `rgba(242, 192, 100, 180)`
         context.fillRect(pos_x, pos_y, this.rectWidth, this.rectHeight);
