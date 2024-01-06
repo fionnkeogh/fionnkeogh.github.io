@@ -82,7 +82,7 @@ from python.simulation import Simulation, Macrophage, Candida, Cytokine, Player
 #             macrophage = self.macrophages[i]
 #             macrophage.update(self.grid)
 
-def init_simulation(width: int = 10, height: int = 10, num_m: int = 5, num_c: int = 3, max_steps: int = 100, seed: int = 1234) -> Simulation:
+def init_simulation(width: int = 10, height: int = 10, num_m: int = 3, num_c: int = 5, max_steps: int = 100, seed: int = 1234) -> Simulation:
     global simulation
     simulation = Simulation(width, height, num_m, num_c, max_steps, seed)
     return simulation

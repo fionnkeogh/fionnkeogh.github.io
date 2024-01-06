@@ -20,9 +20,9 @@ function setCanvasSize(canvas) {
 }
 
 const canvasObjects = [];
-const canvasObjectsMacrophages = [];
-const canvasObjectsCandida = [];
-const canvasObjectsCytokines = [];
+let canvasObjectsMacrophages = [];
+let canvasObjectsCandida = [];
+let canvasObjectsCytokines = [];
 let lastCalledTime;
 let fps;
 
@@ -68,18 +68,14 @@ function removeCanvasCandida(obj) {
     }
 }
 
-function removeCanvasMacrophage(obj) {
-    let index = canvasObjectsMacrophages.indexOf(obj);
-    if (index > -1) {
-        canvasObjectsMacrophages.splice(index, 1);
-    }
+function clearCanvasMacrophage() {
+    canvasObjectsMacrophages = [];
+    return canvasObjectsMacrophages;
 }
 
-function removeCanvasCytokines(obj) {
-    let index = canvasObjectsCytokines.indexOf(obj);
-    if (index > -1) {
-        canvasObjectsCytokines.splice(index, 1);
-    }
+function clearCanvasCytokines(obj) {
+    canvasObjectsCytokines = [];
+    return canvasObjectsCytokines;
 }
 
 function loop(context, canvas) {

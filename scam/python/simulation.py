@@ -233,7 +233,9 @@ class Simulation():
     def get_tile(self, x: int, y: int) -> list:
         agent = None
         #print(self.grid[y,x])
-        if len(self.grid[y, x])> 0 and self.grid[y, x][0] == 'M':
+        x = x if x < np.shape(self.grid)[1] and x >= 0 else (0 if x < np.shape(self.grid)[1] else np.shape(self.grid)[1]-1)
+        y = y if y < np.shape(self.grid)[0] and y >= 0 else (0 if y < np.shape(self.grid)[0] else np.shape(self.grid)[0]-1)
+        if len(self.grid[y, x]) > 0 and self.grid[y, x][0] == 'M':
             agent = self.macrophages[self.grid[y, x]]
         elif len(self.grid[y, x]) > 0 and self.grid[y, x][0] == 'C':
             agent = self.candidae[self.grid[y, x]]
@@ -255,8 +257,8 @@ class Simulation():
         
         if cytokine_id != '':
             y, x = self.get_cytokine_position(cytokine_id)
-        x_distance: int = agent.x - x
-        y_distance: int = agent.y - y
+        x_distance: int = x - agent.x
+        y_distance: int = y - agent.y
 
         directions: list[str] = []
 
@@ -322,28 +324,40 @@ class Simulation():
         self.cytokines[cytokine.id] = cytokine
 
     def update_cytokines(self):
-        old_cytokine_grid = np.copy(self.cytokine_grid)
-        self.cytokine_grid = np.full(old_cytokine_grid.shape, ['',0])
-        #print(self.cytokines.keys())
-        to_pop = list()
-        for i in self.cytokines.keys():
-            cytokine = self.cytokines[i]
-            firing = cytokine.update()
-            if firing == False:
-                to_pop.append(i)
-            else:
-                current_kernel = cytokine.compute_current_kernel()
-                y, x = cytokine.get_position()
-                for y_kern in range(2*cytokine.radius+1):
-                    for x_kern in range(2*cytokine.radius+1):
-                        _y = cytokine.radius - y_kern
-                        _x = cytokine.radius - x_kern
-                        if x + _x >= 0 and x + _x < self.grid.shape[1]:
-                            if y + _y >= 0 and y + _y < self.grid.shape[0]:
-                                if float(old_cytokine_grid[y + _y, x+_x][1]) < current_kernel[cytokine.radius + _y, cytokine.radius + _x]:
-                                    self.cytokine_grid[y + _y, x+_x] = [cytokine.id, current_kernel[cytokine.radius + _y, cytokine.radius + _x]]
-        for i in to_pop:
-            self.cytokines.pop(i)
+        if len(self.cytokines.keys()) == 0:
+            return
+        else:
+            # old_cytokine_grid = np.copy(self.cytokine_grid)
+            proto = np.zeros(len(self.cytokines.keys()))
+            self.cytokine_grid_all = np.zeros((self.cytokine_grid.shape[0], self.cytokine_grid.shape[1], len(self.cytokines.keys())))
+            # for x in range(0,np.shape(self.cytokine_grid_all)[1]):
+            #     for y in range(0,np.shape(self.cytokine_grid_all)[0]):
+            #         self.cytokine_grid_all[y,x] = np.zeros(len(self.cytokines.keys()))
+            self.cytokine_grid = np.full(self.cytokine_grid.shape, ['', 0])
+            #print(self.cytokines.keys())
+            to_pop = list()
+            index = 0
+            for i in self.cytokines.keys():
+                cytokine = self.cytokines[i]
+                firing = cytokine.update()
+                if firing == False:
+                    to_pop.append(i)
+                else:
+                    current_kernel = cytokine.compute_current_kernel()
+                    y, x = cytokine.get_position()
+                    for y_kern in range(2*cytokine.radius+1):
+                        for x_kern in range(2*cytokine.radius+1):
+                            _y = cytokine.radius - y_kern
+                            _x = cytokine.radius - x_kern
+                            if x + _x >= 0 and x + _x < self.grid.shape[1]:
+                                if y + _y >= 0 and y + _y < self.grid.shape[0]:
+                                    new_value = current_kernel[cytokine.radius + _y, cytokine.radius + _x]
+                                    cur_value = self.cytokine_grid[y + _y, x + _x][1]
+                                    if float(cur_value) < float(new_value):
+                                        self.cytokine_grid[y + _y, x + _x] = [list(self.cytokines.keys())[index], new_value]
+                index = index + 1
+            for i in to_pop:
+                self.cytokines.pop(i)
 
     def check_for_players(self, agent:Player):
         up_y = agent.y - 1 if agent.y-1 >= 0 else self.grid.shape[0]-1
@@ -418,7 +432,7 @@ class Simulation():
                     "candida": candidae,
                     "cytokines": cytokines,
                     "grid": grid,
-                    "c_grid": c_grid
+                    "c_grid": self.cyto_grid_to_json()
                 }
             )
 
@@ -427,36 +441,25 @@ class Simulation():
         for y in range(0,height):
             print(self.grid[y])
     
-    def print_cyto_grid(self):
+    def cyto_grid_to_json(self):
         height, width, depth = np.shape(self.cytokine_grid)
-        print(self.cytokine_grid.tolist())
-        # for y in range(0,height):
-        #     print(self.cytokine_grid[y])
+        json = {}
+        for y in range(0, height):
+            for x in range(0, width):
+                json[f'{y}:{x}'] = self.cytokine_grid[y,x].tolist()
+        return json
 
 
 
         
 
-    
+#print(np.full(np.shape(np.empty(5, dtype=object)), np.array(['',0])))
 
-# sim = Simulation()
+#sim = Simulation(400, 400, 100, 150, 100, 1234)
 # sim.print_grid()
-# for i in range(3):
-#     print(sim.run_step())
+#for i in range(100):
+    #print(i)
+    #sim.run_step()
     #sim.print_grid()
-#sim.print_cyto_grid()
-
-
-
-# [['' '0']['' '0']['' '0']['' '0']['' '0']['' '0']['' '0']['' '0']['' '0']['' '0']]
-# [['' '0']['' '0']['' '0']['Z:11' '0.17797940062689']['Z:11' '0.17797940062689']['Z:11' '0.17797940062689']['Z:11' '0.17797940062689']['Z:11' '0.17797940062689']['' '0']['' '0']]
-# [['' '0']['' '0']['Z:11' '0.17797940062689']['Z:11' '0.17797940062689']['Z:11' '0.4228186030508521']['Z:11' '0.4228186030508521']['Z:11' '0.4228186030508521']['Z:11' '0.17797940062689']['Z:11' '0.17797940062689']['' '0']]
-# [['' '0']['Z:11' '0.17797940062689']['Z:11' '0.17797940062689']['Z:11' '0.4228186030508521']['Z:11' '0.6944197049562467']['Z:11' '0.6944197049562467']['Z:11' '0.6944197049562467']['Z:11' '0.4228186030508521']['Z:11' '0.17797940062689']['Z:11' '0.17797940062689']]
-# [['' '0']['Z:11' '0.17797940062689']['Z:11' '0.4228186030508521']['Z:11' '0.6944197049562467']['Z:11' '0.9145211498025237']['Z:11' '0.9145211498025237']['Z:11' '0.9145211498025237']['Z:11' '0.6944197049562467']['Z:11' '0.4228186030508521']['Z:11' '0.17797940062689']]
-# [['' '0']['Z:11' '0.17797940062689']['Z:11' '0.4228186030508521']['Z:11' '0.6944197049562467']['Z:11' '0.9145211498025237']['Z:8' '1.0']['Z:11' '0.9145211498025237']['Z:11' '0.6944197049562467']['Z:11' '0.4228186030508521']['Z:11' '0.17797940062689']]
-# [['' '0']['Z:11' '0.17797940062689']['Z:11' '0.4228186030508521']['Z:11' '0.6944197049562467']['Z:11' '0.9145211498025237']['Z:11' '0.9145211498025237']['Z:11' '0.9145211498025237']['Z:11' '0.6944197049562467']['Z:11' '0.4228186030508521']['Z:11' '0.17797940062689']]
-# [['' '0']['Z:11' '0.17797940062689']['Z:11' '0.17797940062689']['Z:11' '0.4228186030508521']['Z:11' '0.6944197049562467']['Z:11' '0.6944197049562467']['Z:11' '0.6944197049562467']['Z:11' '0.4228186030508521']['Z:11' '0.17797940062689']['Z:11' '0.17797940062689']]
-# [['' '0']['' '0']['Z:11' '0.17797940062689']['Z:11' '0.17797940062689']['Z:11' '0.4228186030508521']['Z:11' '0.4228186030508521']['Z:11' '0.4228186030508521']['Z:11' '0.17797940062689']['Z:11' '0.17797940062689']['' '0']]
-# [['' '0']['' '0']['' '0']['Z:11' '0.17797940062689']['Z:11' '0.17797940062689']['Z:11' '0.17797940062689']['Z:11' '0.17797940062689']['Z:11' '0.17797940062689']['' '0']['' '0']]
-
+# sim.print_cyto_grid()
 
