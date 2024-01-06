@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SCAM</title>
     <script defer onload="console.log(`${pyscript.version}`);" src="https://pyscript.net/latest/pyscript.js"></script>
+    <script>
+	let micropip = pyodide.pyimport(package_name);
+    </script>
     <py-config type="json" style="display: none;">
         {
           "packages": [
@@ -44,8 +47,6 @@
     <py-script>
         import js
         from pyodide.ffi import create_proxy
-	import pyodide_js
-	await pyodide_js.loadPackage('package_name')
         from python.main import init_simulation, get_simulation, Simulation
 
         js.createObject(create_proxy(globals()), "pyodideGlobals")
