@@ -1,4 +1,6 @@
 import random
+import pyodide_js
+await pyodide_js.loadPackage('scipy')
 from python.simulation import Simulation, Macrophage, Candida, Cytokine, Player
 # from python.grid import Grid
 # from python.cytokine import Cytokine
